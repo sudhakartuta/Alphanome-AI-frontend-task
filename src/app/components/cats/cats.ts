@@ -13,10 +13,11 @@ import { switchMap, tap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditCat } from './add-edit-cat/add-edit-cat';
 import { CommonService } from '../../shared/services/common-service';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @Component({
   selector: 'app-cats',
-  imports: [CommonModule, MatTableModule, MatIconModule, MatSortModule, MatButtonModule, MatProgressSpinnerModule,],
+  imports: [CommonModule, MatTableModule, MatIconModule, MatSortModule, MatButtonModule, MatProgressSpinnerModule,MatToolbarModule,MatTooltipModule],
   templateUrl: './cats.html',
   styleUrl: './cats.scss',
 })
