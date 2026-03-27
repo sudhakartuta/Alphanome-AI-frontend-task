@@ -1,0 +1,60 @@
+<div class="w-100 text-end p-2">
+    <button matButton="outlined"  color="primary" class="justify-content-end" (click)="this.addCat()" [disabled]="loading()">
+        Add New Cat
+        <mat-icon class="text-primary">add</mat-icon>
+    </button>
+</div>
+
+<div class="example-table-container">
+    <table mat-table [dataSource]="this.dataSource" class="example-table" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear> 
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let row">{{row.info.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+            <td mat-cell *matCellDef="let row">{{row.info.description}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
+            <td mat-cell *matCellDef="let row">{{row.info.age}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="this.viewCat(row)">
+                    <mat-icon class="text-success">visibility</mat-icon>
+                </button>
+                <button mat-icon-button (click)="this.editCat(row)">
+                    <mat-icon color="primary">edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="this.deleteCat(row.id)">
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <!-- Loading column -->
+        <ng-container matColumnDef="loading">
+            <td mat-footer-cell *matFooterCellDef class="bg-light" [attr.colspan]="displayedColumns.length">
+
+                <div class="d-flex justify-content-center align-items-center">
+                    <mat-spinner [diameter]="20" class="me-1"></mat-spinner>
+                    loading...
+                </div>
+
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{ 'd-none': !loading() }"></tr>
+
+    </table>
+</div>
